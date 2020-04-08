@@ -15,6 +15,7 @@ function bus() {
     // Envío de la petición
     req.send(null);
 
+    
     var data = JSON.parse(req.responseText)
     
     var detalles = "";
