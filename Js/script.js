@@ -1,10 +1,10 @@
-var prueba;
-var result = "";
 var req = new XMLHttpRequest();
 function bus() {
 
+    var prueba;
     var result = "";
-    var req = new XMLHttpRequest();
+   
+    
     var porNombre = document.getElementsByName("q")[0].value;
     var numero_pag = document.getElementById("paginas").value;
     //document.getElementById("resultado").innerHTML=porNombre;
@@ -17,6 +17,8 @@ function bus() {
 
     
     var data = JSON.parse(req.responseText)
+
+    console.log(data)
     
     var detalles = "";
  
@@ -35,6 +37,7 @@ function bus() {
                 "<td>" + movie.Type + "</td>" +
                 "<td><img src=" + movie.Poster + "</td>" +
                 "</tr>";
+                console.log(movie.imdbID)
         });
         document.getElementById("informacion").innerHTML = detalles;   
     }
@@ -62,5 +65,32 @@ function bus() {
         });
     });
 }
+
+function buscarPorID (clave){
+    var peticion = ""
+    var data=""
+    var detalles = ""
+    var clave2 = clave
+    console.log(clave2)
+    peticion = "http://www.omdbapi.com/?apikey=eabd474&i=" + clave2 + "&plot=full"
+    req.open("GET", peticion,false); 
+    // Envío de la petición
+    req.send(null);
+    
+    var data = JSON.parse(req.responseText)
+
+    detalles += "<tr>" +
+            "<td><a href='#' onclick=\"buscarPorID('" + data.imdbID + "')\">Mas detalles </td>" +
+            "<td>" + data.Title + "</td>" +
+            "<td>" + data.Year + "</td>" +
+            "<td>" + data.Type + "</td>" +
+            "<td><img src=" + data.Poster + "</td>" +
+            "</tr>";
+
+    document.getElementById("detalles").innerHTML = detalles;  
+
+}
+
+
 
 
