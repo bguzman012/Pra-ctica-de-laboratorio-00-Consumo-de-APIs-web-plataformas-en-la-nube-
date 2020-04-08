@@ -6,14 +6,17 @@
 }
 
 th{
-    background-color: aquamarine;
+    background-color: #007bff;
     border-style: groove;
     border-width: 1px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 .dat{
-    border-style: groove;
-    border-color: black;
+    border-style: inset;
+    border-color: dodgerblue;
     border-width: 2px;
 }
 
@@ -27,6 +30,8 @@ img{
 th,td {
     padding: 0.4rem !important;
 }
+
+td {}
 body>div {
     box-shadow: 10px 10px 8px #888888;
     border: 2px solid black;
@@ -38,3 +43,26 @@ table{
 }
 
 
+article#movies {
+    margin-top: 5%;
+    border-style: inset;
+    padding: 5%;
+    border-color: dodgerblue;
+}
+
+.col-4.text-left {margin-left: unset;float: left;padding-left: 2%;}
+
+.col-4 {
+    margin-left: auto;
+    float: left;
+}
+
+h2.mb-4 {
+    margin-left: 0%;
+}
+
+.row.no-gutters.d-flex.align-items-center.justify-content-center {
+    margin-left: -37%;
+}
+
+img.img-fluid {width: initial;height: initial;}
