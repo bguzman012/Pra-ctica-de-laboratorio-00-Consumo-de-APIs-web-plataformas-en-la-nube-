@@ -7,14 +7,22 @@ function bus() {
 
 
 
-    var porNombre = document.getElementsByName("q")[0].value;
-    var numero_pag = document.getElementById("paginas").value;
+    var porNombre = document.getElementById("titulo").value;
+    console.log(porNombre);
     document.getElementById('action').innerHTML = "";
     var intro = document.getElementById('mia');
     intro.style.visibility = "visible";
-
     var detalles = "";
 
+    if (porNombre == "") {
+        detalles = "<tr>" +
+            "<td colspan='5'> Sin informacion disponible...</td>" +
+            "</tr>";
+        document.getElementById("informacion").innerHTML = detalles;
+
+    } 
+
+    
     for (i = 1; i <= 100; i++) {
         // Petición HTTP GET síncrona hacia el archivo fotos.json del servidor
         req.open("GET", "http://www.omdbapi.com/?apikey=eabd474&s=" + porNombre + "&page=" + i, false);
@@ -24,16 +32,17 @@ function bus() {
         var jj = data.Response;
         
         if (jj == "True") {
-
             if (porNombre == "") {
                 detalles = "<tr>" +
                     "<td colspan='5'> Sin informacion disponible...</td>" +
                     "</tr>";
                 document.getElementById("informacion").innerHTML = detalles;
-            } else {
+            } 
+    
+            else {
                 data.Search.forEach(movie => {
                     detalles += "<tr>" +
-                        "<td><a href='#' onclick=\"buscarPorID('" + movie.imdbID + "')\">Mas detalles </td>" +
+                        "<td><a href='#movies' onclick=\"buscarPorID('" + movie.imdbID + "')\">Mas detalles </td>" +
                         "<td>" + movie.Title + "</td>" +
                         "<td>" + movie.Year + "</td>" +
                         "<td>" + movie.Type + "</td>" +
@@ -69,19 +78,20 @@ function bus() {
                     $('#mia tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
                         css('display', 'table-row').animate({ opacity: 1 }, 300);
                 });
-        
+                
             });
 
             return;
         }
     }
-
+    
 
 
     
 }
 
 function buscarPorID(clave) {
+
     var peticion = ""
     var data = ""
     var detalles = ""
@@ -92,35 +102,22 @@ function buscarPorID(clave) {
     // Envío de la petición
     req.send(null);
 
-    var data = JSON.parse(req.responseText)
-
-    console.log(data);
+    var data = JSON.parse(req.responseText);
     var year = data.Year;
-    console.log(year);
     var rated = data.Rated;
-    console.log(rated);
-    var released = data.Released;
-    console.log(released);
-    var runtime = data.Runtime;
-    console.log(runtime);
-    var actors = data.Actors;
-    console.log(actors);
+    var released = data.Released; 
+    var runtime = data.Runtime;    
+    var actors = data.Actors;    
     var country = data.Country;
-    console.log(country);
-    var director = data.Director;
-    console.log(director);
-    var genre = data.Genre;
-    console.log(genre);
+    var director = data.Director;    
+    var genre = data.Genre;    
     var language = data.Language;
-    console.log(language);
-    var plot = data.Plot;
-    console.log(plot);
-    var poster = data.Poster;
-    console.log(poster);
-
+    var awards =data.Awards;
+    var plot = data.Plot;    
+    var poster = data.Poster;    
+    var production = data.Production;
+    var type = data.Type;
     var template = document.getElementById('index').innerHTML;
-
-    console.log(template);
 
     var compile = Handlebars.compile(template);
 
@@ -133,6 +130,13 @@ function buscarPorID(clave) {
         runtime: `Duracion: <strong>${data.Runtime}</strong>`,
         genre: `Genero: <strong>${data.Genre}</strong>`,
         director: `Director: <strong>${data.Director}</strong>`,
+        actors: `Actores: <strong>${data.Actors}</strong>`,
+        country: `Ciudad(es): <strong>${data.Country}</strong>`,
+        language: `Idioma(s): <strong>${data.Language}</strong>`,
+        awards: `Premio(s): <strong>${data.Awards}</strong>`,
+        production: `Produccion: <strong>${data.Production}</strong>`,
+        type: `Tipo: <strong>${data.Type}</strong>`,
+
         plot: `<strong>Sinopsis:</strong> ${data.Plot}`,
     });
     document.getElementById('action').innerHTML = compiledHTML;
