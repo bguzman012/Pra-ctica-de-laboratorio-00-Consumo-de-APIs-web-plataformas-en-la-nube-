@@ -1,10 +1,8 @@
 **TÍTULO PRÁCTICA**: Desarrollo de una aplicación web utilizando la API de la base de datos de películas OMDB 
 **OBJETIVO ALCANZADO:**  Diseniar un diagrama de arquitectura y patrones adecuado para la plataforma web realizada Interactuar con el api de OMDB y poder representar la en una interfaz realizada en html Realizar las funciones para buscar por nombre y titulo de una pelicula                      
 **ACTIVIDADES DESARROLLADAS**                                                                                               
-**Creando una llave para acceder** Nos dirigimos a la pagina oficial del Api Omdb <http://www.omdbapi.com/>                 **RESULTADO(S) OBTENIDO(S)**: Una aplicación web con características intuitivas y sencilla donde se puede buscar una película por su nombre o por el código de la misma mediante el uso de la Api sugerida por el docente, “**OMDB”**                                                                                                                                                                                                                              |                                                                                                         |                                                                                                               |
-| **CONCLUSIONES**: El api de OMDB es muy útil al momento de manejar datos de forma masiva y usarlos para lo que uno crea conveniente, solo es cuestión de solicitar una llave y permite accedes y obtener información de un grupo de películas o una en específico. La paginación es necesaria para este tipo de aplicaciones porque vuelve dinámica a la tabla y no es necesario mostrar todos los datos, ya que había casos que los títulos pasaban de 300 ítems. |                                                                                                         |                                                                                                               |
-| **RECOMENDACIONES**: Aplicar conceptos de interacción humano máquina para el desarrollo de la GUI.                                                                                                                                                                                                                                                                                                                                                                 |                                                                                                         |                                                                                                               |
 
+**Creando una llave para acceder** Nos dirigimos a la pagina oficial del Api Omdb <http://www.omdbapi.com/>                 
 ![](media/69f59b857ae6561d1ef770090f6c050d.png)
 
 En **api Key** solicitamos una llave
@@ -804,6 +802,10 @@ realizada
 
 5.- El controlador retorna la información a la vista y este a su vez al cliente
 con los datos que solicito
+
+**RESULTADO(S) OBTENIDO(S)**: Una aplicación web con características intuitivas y sencilla donde se puede buscar una película por su nombre o por el código de la misma mediante el uso de la Api sugerida por el docente, “**OMDB”**                                                                                                                                             
+**CONCLUSIONES**: El api de OMDB es muy útil al momento de manejar datos de forma masiva y usarlos para lo que uno crea conveniente, solo es cuestión de solicitar una llave y permite accedes y obtener información de un grupo de películas o una en específico. La paginación es necesaria para este tipo de aplicaciones porque vuelve dinámica a la tabla y no es necesario mostrar todos los datos, ya que había casos que los títulos pasaban de 300 ítems.                                         
+**RECOMENDACIONES**: Aplicar conceptos de interacción humano máquina para el desarrollo de la GUI.  
 
 **Nombre de estudiante: \_____________________Bryam Guzman_______\_**
 
