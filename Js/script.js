@@ -1,5 +1,5 @@
 var req = new XMLHttpRequest();
-var arreglo = new Array();
+
 function bus() {
 
     var prueba;
@@ -8,8 +8,10 @@ function bus() {
 
 
     var porNombre = document.getElementById("titulo").value;
+    document.getElementById('pag').innerHTML = "Pagina 1";
     console.log(porNombre);
     document.getElementById('action').innerHTML = "";
+    
     var intro = document.getElementById('mia');
     intro.style.visibility = "visible";
     var detalles = "";
@@ -31,25 +33,26 @@ function bus() {
         data = JSON.parse(req.responseText)
         var jj = data.Response;
         
-        if (jj == "True") {
-            if (porNombre == "") {
-                detalles = "<tr>" +
-                    "<td colspan='5'> Sin informacion disponible...</td>" +
+    if (jj == "True") {
+        if (porNombre == "") {
+            detalles = "<tr>" +
+                "<td colspan='5'> Sin informacion disponible...</td>" +
+                "</tr>";
+            document.getElementById("informacion").innerHTML = detalles;
+        } 
+ 
+        else {
+            data.Search.forEach(movie => {
+                detalles += "<tr>" +
+                    "<td><a href='#movies' onclick=\"buscarPorID('" + movie.imdbID + 
+                    "')\">Mas detalles </td>" +
+                    "<td>" + movie.Title + "</td>" +
+                    "<td>" + movie.Year + "</td>" +
+                    "<td>" + movie.Type + "</td>" +
+                    "<td><img src=" + movie.Poster + "</td>" +
                     "</tr>";
-                document.getElementById("informacion").innerHTML = detalles;
-            } 
-    
-            else {
-                data.Search.forEach(movie => {
-                    detalles += "<tr>" +
-                        "<td><a href='#movies' onclick=\"buscarPorID('" + movie.imdbID + "')\">Mas detalles </td>" +
-                        "<td>" + movie.Title + "</td>" +
-                        "<td>" + movie.Year + "</td>" +
-                        "<td>" + movie.Type + "</td>" +
-                        "<td><img src=" + movie.Poster + "</td>" +
-                        "</tr>";
                         
-                });
+            });
             }
             document.getElementById("informacion").innerHTML = detalles;
 
@@ -73,6 +76,10 @@ function bus() {
                     $('#menu a').removeClass('active');
                     $(this).addClass('active');
                     var currPage = $(this).attr('rel');
+                    
+                    var numeroo = parseInt(currPage);
+                    numeroo = numeroo + 1;
+                    document.getElementById('pag').innerHTML = "Pagina " + (numeroo);
                     var startItem = currPage * rowsShown;
                     var endItem = startItem + rowsShown;
                     $('#mia tbody tr').css('opacity', '0.0').hide().slice(startItem, endItem).
